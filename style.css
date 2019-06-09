@@ -1,0 +1,29 @@
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 0px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 25px;
+  }
+  #display
+  {
+    width: 50%;
+    margin: 8px 0;
+    box-sizing: border-box;
+  } 
+  input[type="text"]
+  {
+      font-size:25px;
+  }
+  #call_button
+  {
+      display:inline;
+  }
+  #end_button
+  {
+      display:none;
+      background-color:red;
+  }

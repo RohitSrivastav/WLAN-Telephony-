@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+
+<head>
+   <link rel="stylesheet" href="style.css">
+   <script src="peer.min.js"></script>
+   <script src="RecordRTC.js"></script>
+   <script src="phone.js"></script>
+</head>
+
+<body>
+   <div id="dial_pad">
+      Phone number :<br>
+      <input id="phone_number" type="text">
+      <button id="call_button" class="button" onclick="call()">CALL</button>
+      <button id="end_button" class="button" onclick="hangup()">END</button>
+   </div>
+   <div>
+      <audio id="player" controls></audio>
+   </div>
+</body>
+
+</html>

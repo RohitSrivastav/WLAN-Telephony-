@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+
+<head>
+    <script src="peer.min.js"></script>
+    <script src="RecordRTC.js"></script>
+    
+</head>
+
+<body>
+    <div>
+        <audio id = "player" controls></audio>
+    </div>
+    <script>
+        function throw_id_to_server(id) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    //console.log("Id sent");
+                }
+            };
+            xhttp.open("GET", "signal?action=iamserverbrowser&id=" + id, true);
+            xhttp.send();
+        }
+        var options = {
+            'host': 'localhost',
+            'port': 9000,
+        };
+        var peer = new Peer();
+        peer.on('open', function (id) {
+            console.log(id);
+            throw_id_to_server(id);
+        });
+        function onReceiveStream(remoteStream) {
+            var audio = document.getElementById('player');
+            audio.srcObject = remoteStream;
+            audio.play();
+        }
+        peer.on('call', function (call) {
+            navigator.getUserMedia({ video: false, audio: true }, function (stream) {
+                call.answer(stream); // Answer the call with an A/V stream.
+                call.on('stream', onReceiveStream);
+                mediaConnection.on('close', function() { 
+                    
+                    
+                });
+            }, function (err) {
+                console.log('Failed to get local stream', err);
+            });
+        });
+    </script>
+</body>
+
+</html>
